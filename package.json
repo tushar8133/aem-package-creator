@@ -1,0 +1,24 @@
+{
+  "name": "aem-package-creator",
+  "version": "0.0.1",
+  "description": "Bundles an AEM package, taking data from excel file",
+  "main": "main.js",
+  "dependencies": {
+    "xlsx": "^0.15.1",
+    "zip-unzip-promise": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tushar8133/aem-package-creator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tushar8133/aem-package-creator/issues"
+  },
+  "homepage": "https://github.com/tushar8133/aem-package-creator#readme"
+}
