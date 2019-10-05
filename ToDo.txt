@@ -4,3 +4,6 @@ Update NODEJS__LIST__HEADER as per ListType A/B
 Convert to Classes properly
 Indent Code
 Prepare Read Me
+output.zip folder rename accordingly, and also unzipping folder is coming along.
+'en' folder name & List folder name should be dynamic.
+Check why empty folder are not uploading on git.
