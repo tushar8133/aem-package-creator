@@ -1,0 +1,6 @@
+Async/Await not working, put Promise, remove setTimer
+Excel file name is still static. Give option to user to choose excel file name from command line
+Update NODEJS__LIST__HEADER as per ListType A/B
+Convert to Classes properly
+Indent Code
+Prepare Read Me
