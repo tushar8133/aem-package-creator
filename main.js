@@ -2,53 +2,50 @@ const fsExtra = require('fs-extra');
 const {zip, unzip, list } = require('zip-unzip-promise');
 const Excel = require('./Excel');
 const Replacer = require('./Replacer');
-var excelFileNameWithExtn = process.argv[2] || 'test.xlsx';
-var excelFileName = excelFileNameWithExtn.substr(0, excelFileNameWithExtn.lastIndexOf('.'));
-var listType = "A";
-var listData;
 
-function init(){
+const FILE = 'test.xlsx'
+const LIST_TYPE = "B";
 
-  console.log("Cleaning old files...");
-  fsExtra.emptyDirSync('./unzipped');
-  fsExtra.emptyDirSync('./zipped');
+async function init(){
 
-  setTimeout(function(){ doUnZip() }, 10000);
+  console.log("\nStarting...\n");
+  
+  console.log("Cleaning previous temp files.");
+  await fsExtra.emptyDir('./unzipped');
+  await fsExtra.emptyDir('./zipped');
+  console.log("Done");
 
-  setTimeout(function(){ listData = getExcelData() }, 20000);
+  console.log();
 
-  setTimeout(function(){ runReplacer(listData) }, 30000);
+  console.log("Creating folder structure.");
+  await unzip(`./aem_packages/PACKAGE_TYPE_${LIST_TYPE}.zip`, `./unzipped`, { overwrite: true });
+  console.log("Done");
 
-  setTimeout(function(){ doZip() }, 40000);
+  console.log();
 
+  console.log("Getting excel data.");
+  var excel = new Excel();
+  var data = await excel.getData(FILE, LIST_TYPE);
+  console.log("Done");
 
-}
+  console.log();
 
-function getExcelData() {
-    console.log("Collecting excel data");
-    var excel = new Excel();
-    var excelData = excel.convertExcelToJson("test.xlsx");
-    var final = (listType == "A")? excel.createListTypeA(excelData) : excel.createListTypeB(excelData);
-    return final;
-}
-
-function runReplacer(listData){
-  console.log("Updating package with data");
+  console.log("Inserting data into folder structure.");
   var r = new Replacer();
-  r.doReplace(listData);
-}
+  await r.doReplace(data);
+  console.log("Done");
 
-async function doUnZip(){
-  console.log("Unpacking files");
-  var aa = await unzip(`./aem_packages/PACKAGE_TYPE_${listType}.zip`, `./unzipped`, { overwrite: true });
-}
+  console.log();
 
-async function doZip(){
-  console.log("Creating final package");
-  var bb = await zip('./unzipped/', './zipped/output.zip', {overwrite: true });
-  console.log("Done! Please check 'zipped' folder");
+  console.log("Creating zip package of folder structure.");
+  await zip('./unzipped/', './zipped/output.zip', {overwrite: true });
+  console.log("Done");
+
+
+  console.log("\nFinal Package created inside 'zipped' folder.");
+
 }
 
 init();
 
-process.on('unhandledRejection', err => {});
+// process.on('unhandledRejection', err => {});
