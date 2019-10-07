@@ -1,9 +1,13 @@
-Excel file name is still static. Give option to user to choose excel file name from command line
+Server HTML user interface
 Update NODEJS__LIST__HEADER as per ListType A/B
 Convert to Classes properly
 Indent Code
 Prepare Read Me
-output.zip folder rename accordingly, and also unzipping folder is coming along.
-'en' folder name & List folder name should be dynamic.
+unzipping folder is coming along.
+Increment Version Number
+Increment Build Number
 Check why empty folder are not uploading on git.
+[done] Excel file name is still static. Give option to user to choose excel file name from command line
+[done] 'en' folder name & List folder name should be dynamic.
+[done] output.zip folder rename accordingly
 [done] Async/Await not working, put Promise, remove setTimer
