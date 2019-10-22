@@ -26,9 +26,9 @@ async function init(){
   await r.doReplace(data);
   
   console.log("Creating zip package of folder structure.");
-  var package_name = userConfig.NODEJS__LIST__NAME+'-'+userConfig.NODEJS__PACKAGE__VER+'.zip'
-  await zip("./unzipped", userConfig.ZIP_PATH+'/'+package_name);
-  
+  var package_name = userConfig.NODEJS__LIST__NAME+'-'+userConfig.NODEJS__PACKAGE__VER+'.zip';
+  await zip(["./unzipped/jcr_root","./unzipped/META-INF"], userConfig.ZIP_PATH+'/'+package_name);
+
   console.log("Final Package created inside 'zipped' folder.");
 }
 
